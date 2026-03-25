@@ -1,0 +1,428 @@
+/* 1. 简约扁平化按钮 */
+.button-simple {
+    background-color: #4CAF50; /* 绿色背景 */
+    border: none; /* 无边框 */
+    color: white; /* 白色文字 */
+    padding: 15px 32px; /* 内边距 */
+    text-align: center; /* 文字居中 */
+    text-decoration: none; /* 无下划线 */
+    display: inline-block; /* 行内块元素 */
+    font-size: 16px; /* 字体大小 */
+    margin: 4px 2px; /* 外边距 */
+    cursor: pointer; /* 鼠标指针样式 */
+    border-radius: 8px; /* 圆角 */
+    transition: background-color 0.3s ease; /* 背景色过渡效果 */
+}
+
+.button-simple:hover {
+    background-color: #45a049; /* 鼠标悬停时的背景色 */
+}
+
+/* 2. 渐变背景按钮 */
+.button-gradient {
+    background: linear-gradient(45deg, #FF7E5F, #FEB47B); /* 渐变背景 */
+    border: none; /* 无边框 */
+    color: white; /* 白色文字 */
+    padding: 15px 32px; /* 内边距 */
+    text-align: center; /* 文字居中 */
+    text-decoration: none; /* 无下划线 */
+    display: inline-block; /* 行内块元素 */
+    font-size: 16px; /* 字体大小 */
+    margin: 4px 2px; /* 外边距 */
+    cursor: pointer; /* 鼠标指针样式 */
+    border-radius: 8px; /* 圆角 */
+    transition: background 0.3s ease; /* 背景过渡效果 */
+}
+
+.button-gradient:hover {
+    background: linear-gradient(45deg, #FEB47B, #FF7E5F); /* 鼠标悬停时的渐变背景 */
+}
+
+/* 3. 3D立体按钮 */
+.button-3d {
+    background-color: #008CBA; /* 蓝色背景 */
+    border: none; /* 无边框 */
+    color: white; /* 白色文字 */
+    padding: 15px 32px; /* 内边距 */
+    text-align: center; /* 文字居中 */
+    text-decoration: none; /* 无下划线 */
+    display: inline-block; /* 行内块元素 */
+    font-size: 16px; /* 字体大小 */
+    margin: 4px 2px; /* 外边距 */
+    cursor: pointer; /* 鼠标指针样式 */
+    border-radius: 8px; /* 圆角 */
+    box-shadow: 0 5px #007B9E; /* 阴影效果 */
+    transition: all 0.3s ease; /* 所有属性过渡效果 */
+}
+
+.button-3d:hover {
+    background-color: #007B9E; /* 鼠标悬停时的背景色 */
+    box-shadow: 0 3px #005F6B; /* 鼠标悬停时的阴影效果 */
+    transform: translateY(2px); /* 按钮下移 */
+}
+
+/* 4. 边框动画按钮 */
+.button-border-animation {
+    background-color: transparent; /* 透明背景 */
+    border: 2px solid #FF6F61; /* 边框 */
+    color: #FF6F61; /* 文字颜色 */
+    padding: 15px 32px; /* 内边距 */
+    text-align: center; /* 文字居中 */
+    text-decoration: none; /* 无下划线 */
+    display: inline-block; /* 行内块元素 */
+    font-size: 16px; /* 字体大小 */
+    margin: 4px 2px; /* 外边距 */
+    cursor: pointer; /* 鼠标指针样式 */
+    border-radius: 8px; /* 圆角 */
+    transition: all 0.3s ease; /* 所有属性过渡效果 */
+    position: relative; /* 相对定位 */
+    overflow: hidden; /* 溢出隐藏 */
+}
+
+.button-border-animation::before {
+    content: ''; /* 伪元素内容 */
+    position: absolute; /* 绝对定位 */
+    top: 0;
+    left: -100%; /* 初始位置 */
+    width: 100%;
+    height: 100%;
+    background: #FF6F61; /* 背景色 */
+    transition: left 0.3s ease; /* 过渡效果 */
+    z-index: -1; /* 置于底层 */
+}
+
+.button-border-animation:hover {
+    color: white; /* 鼠标悬停时的文字颜色 */
+}
+
+.button-border-animation:hover::before {
+    left: 0; /* 鼠标悬停时的位置 */
+}
+
+/* 5. 图标按钮 */
+.button-icon {
+    background-color: #555; /* 灰色背景 */
+    border: none; /* 无边框 */
+    color: white; /* 白色文字 */
+    padding: 15px 32px; /* 内边距 */
+    text-align: center; /* 文字居中 */
+    text-decoration: none; /* 无下划线 */
+    display: inline-block; /* 行内块元素 */
+    font-size: 16px; /* 字体大小 */
+    margin: 4px 2px; /* 外边距 */
+    cursor: pointer; /* 鼠标指针样式 */
+    border-radius: 8px; /* 圆角 */
+    transition: background-color 0.3s ease; /* 背景色过渡效果 */
+}
+
+.button-icon i {
+    margin-right: 8px; /* 图标与文字的间距 */
+}
+
+.button-icon:hover {
+    background-color: #777; /* 鼠标悬停时的背景色 */
+}
+
+/* 6. 霓虹光效按钮 */
+.button-neon {
+    background-color: transparent; /* 透明背景 */
+    border: 2px solid #00ff88; /* 霓虹绿色边框 */
+    color: #00ff88; /* 霓虹绿色文字 */
+    padding: 15px 30px; /* 内边距 */
+    font-size: 16px; /* 字体大小 */
+    cursor: pointer; /* 鼠标指针样式 */
+    border-radius: 5px; /* 圆角 */
+    position: relative; /* 相对定位 */
+    overflow: hidden; /* 溢出隐藏 */
+    transition: color 0.3s ease; /* 文字颜色过渡效果 */
+}
+
+.button-neon::before {
+    content: ''; /* 伪元素内容 */
+    position: absolute; /* 绝对定位 */
+    top: 50%;
+    left: 50%;
+    width: 300%;
+    height: 300%;
+    background: radial-gradient(circle, rgba(0, 255, 136, 0.5), transparent); /* 霓虹光效 */
+    transform: translate(-50%, -50%) scale(0); /* 初始缩放 */
+    transition: transform 0.5s ease; /* 缩放过渡效果 */
+    z-index: 0; /* 置于底层 */
+}
+
+.button-neon:hover {
+    color: #000; /* 鼠标悬停时的文字颜色 */
+}
+
+.button-neon:hover::before {
+    transform: translate(-50%, -50%) scale(1); /* 鼠标悬停时的缩放 */
+}
+
+/* 7. 液体填充按钮 */
+.button-liquid {
+    background-color: transparent; /* 透明背景 */
+    border: 2px solid #ff6f61; /* 边框 */
+    color: #ff6f61; /* 文字颜色 */
+    padding: 15px 30px; /* 内边距 */
+    font-size: 16px; /* 字体大小 */
+    cursor: pointer; /* 鼠标指针样式 */
+    border-radius: 5px; /* 圆角 */
+    position: relative; /* 相对定位 */
+    overflow: hidden; /* 溢出隐藏 */
+    transition: color 0.3s ease; /* 文字颜色过渡效果 */
+}
+
+.button-liquid::before {
+    content: ''; /* 伪元素内容 */
+    position: absolute; /* 绝对定位 */
+    top: 0;
+    left: -100%; /* 初始位置 */
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 111, 97, 0.5), transparent); /* 液体效果 */
+    transition: left 0.5s ease; /* 过渡效果 */
+    z-index: 0; /* 置于底层 */
+}
+
+.button-liquid:hover {
+    color: #fff; /* 鼠标悬停时的文字颜色 */
+}
+
+.button-liquid:hover::before {
+    left: 100%; /* 鼠标悬停时的位置 */
+}
+
+/* 8. 悬浮阴影按钮 */
+.button-hover-shadow {
+    background-color: #6a11cb; /* 紫色背景 */
+    border: none; /* 无边框 */
+    color: white; /* 白色文字 */
+    padding: 15px 30px; /* 内边距 */
+    font-size: 16px; /* 字体大小 */
+    cursor: pointer; /* 鼠标指针样式 */
+    border-radius: 5px; /* 圆角 */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* 初始阴影 */
+    transition: all 0.3s ease; /* 所有属性过渡效果 */
+}
+
+.button-hover-shadow:hover {
+    transform: translateY(-5px); /* 按钮上移 */
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2); /* 鼠标悬停时的阴影 */
+}
+
+/* 9. 光晕效果按钮 */
+.button-glow {
+    background-color: #ff6f61; /* 背景色 */
+    border: none; /* 无边框 */
+    color: white; /* 白色文字 */
+    padding: 15px 30px; /* 内边距 */
+    font-size: 16px; /* 字体大小 */
+    cursor: pointer; /* 鼠标指针样式 */
+    border-radius: 5px; /* 圆角 */
+    box-shadow: 0 0 10px rgba(255, 111, 97, 0.5), 0 0 20px rgba(255, 111, 97, 0.5); /* 光晕效果 */
+    transition: box-shadow 0.3s ease; /* 阴影过渡效果 */
+}
+
+.button-glow:hover {
+    box-shadow: 0 0 20px rgba(255, 111, 97, 0.8), 0 0 40px rgba(255, 111, 97, 0.8); /* 鼠标悬停时的光晕 */
+}
+
+/* 10. 粒子动画按钮 */
+.button-particle {
+    background-color: #1e90ff; /* 蓝色背景 */
+    border: none; /* 无边框 */
+    color: white; /* 白色文字 */
+    padding: 15px 30px; /* 内边距 */
+    font-size: 16px; /* 字体大小 */
+    cursor: pointer; /* 鼠标指针样式 */
+    border-radius: 5px; /* 圆角 */
+    position: relative; /* 相对定位 */
+    overflow: hidden; /* 溢出隐藏 */
+    transition: background-color 0.3s ease; /* 背景色过渡效果 */
+}
+
+.button-particle::before {
+    content: ''; /* 伪元素内容 */
+    position: absolute; /* 绝对定位 */
+    top: 50%;
+    left: 50%;
+    width: 10px;
+    height: 10px;
+    background: rgba(255, 255, 255, 0.5); /* 粒子颜色 */
+    border-radius: 50%; /* 圆形 */
+    transform: translate(-50%, -50%) scale(0); /* 初始缩放 */
+    animation: particle 0.6s ease-out; /* 粒子动画 */
+    opacity: 0; /* 初始透明度 */
+}
+
+@keyframes particle {
+    0% {
+        transform: translate(-50%, -50%) scale(0);
+        opacity: 1;
+    }
+    100% {
+        transform: translate(-50%, -50%) scale(3);
+        opacity: 0;
+    }
+}
+
+.button-particle:hover {
+    background-color: #0077cc; /* 鼠标悬停时的背景色 */
+}
+
+.button-particle:active::before {
+    animation: particle 0.6s ease-out; /* 点击时触发粒子动画 */
+}
+
+/* 11. 3D旋转光效按钮 */
+.button-3d-rotate {
+    background: linear-gradient(45deg, #ff0084, #33001b); /* 渐变背景 */
+    border: none; /* 无边框 */
+    color: white; /* 白色文字 */
+    padding: 20px 40px; /* 内边距 */
+    font-size: 18px; /* 字体大小 */
+    cursor: pointer; /* 鼠标指针样式 */
+    border-radius: 10px; /* 圆角 */
+    position: relative; /* 相对定位 */
+    overflow: hidden; /* 溢出隐藏 */
+    transform-style: preserve-3d; /* 启用3D变换 */
+    perspective: 1000px; /* 透视效果 */
+    transition: all 0.5s ease; /* 所有属性过渡效果 */
+}
+
+.button-3d-rotate::before {
+    content: ''; /* 伪元素内容 */
+    position: absolute; /* 绝对定位 */
+    top: 0;
+    left: -100%; /* 初始位置 */
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.5), transparent); /* 光效 */
+    transition: left 0.5s ease; /* 光效过渡效果 */
+}
+
+.button-3d-rotate:hover {
+    transform: rotateY(20deg) rotateX(10deg) scale(1.1); /* 3D旋转效果 */
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3); /* 阴影效果 */
+}
+
+.button-3d-rotate:hover::before {
+    left: 100%; /* 光效移动 */
+}
+
+.button-3d-rotate:active {
+    transform: rotateY(0) rotateX(0) scale(0.95); /* 点击时的缩放效果 */
+}
+
+/* 12. 全息投影按钮 */
+.button-hologram {
+    background: linear-gradient(45deg, #00ffcc, #ff00ff, #00ffcc); /* 全息渐变背景 */
+    border: none; /* 无边框 */
+    color: white; /* 白色文字 */
+    padding: 20px 40px; /* 内边距 */
+    font-size: 18px; /* 字体大小 */
+    cursor: pointer; /* 鼠标指针样式 */
+    border-radius: 10px; /* 圆角 */
+    position: relative; /* 相对定位 */
+    overflow: hidden; /* 溢出隐藏 */
+    animation: hologram 3s infinite linear; /* 全息动画 */
+    box-shadow: 0 0 10px rgba(0, 255, 204, 0.5), 0 0 20px rgba(255, 0, 255, 0.5); /* 光晕效果 */
+}
+
+@keyframes hologram {
+    0% {
+        background-position: 0 0; /* 初始位置 */
+    }
+    100% {
+        background-position: 200% 0; /* 背景移动 */
+    }
+}
+
+.button-hologram:hover {
+    animation: hologram 1s infinite linear; /* 鼠标悬停时加快动画 */
+    box-shadow: 0 0 20px rgba(0, 255, 204, 0.8), 0 0 40px rgba(255, 0, 255, 0.8); /* 更强的光晕效果 */
+}
+
+/* 13. 火焰效果按钮 */
+.button-flame {
+    background: linear-gradient(45deg, #ff8a00, #e52e71); /* 火焰渐变背景 */
+    border: none; /* 无边框 */
+    color: white; /* 白色文字 */
+    padding: 20px 40px; /* 内边距 */
+    font-size: 18px; /* 字体大小 */
+    cursor: pointer; /* 鼠标指针样式 */
+    border-radius: 10px; /* 圆角 */
+    position: relative; /* 相对定位 */
+    overflow: hidden; /* 溢出隐藏 */
+    transition: all 0.3s ease; /* 所有属性过渡效果 */
+}
+
+.button-flame::before {
+    content: ''; /* 伪元素内容 */
+    position: absolute; /* 绝对定位 */
+    top: 0;
+    left: -100%; /* 初始位置 */
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.5), transparent); /* 光效 */
+    transition: left 0.5s ease; /* 光效过渡效果 */
+}
+
+.button-flame:hover {
+    transform: scale(1.1); /* 鼠标悬停时的缩放效果 */
+    box-shadow: 0 0 20px rgba(255, 138, 0, 0.8), 0 0 40px rgba(229, 46, 113, 0.8); /* 火焰光晕效果 */
+}
+
+.button-flame:hover::before {
+    left: 100%; /* 光效移动 */
+}
+
+/* 14. 星空背景按钮 */
+.button-stars {
+    background: radial-gradient(circle, #1a1a1a, #000); /* 星空背景 */
+    border: 2px solid #00ffcc; /* 边框 */
+    color: #00ffcc; /* 文字颜色 */
+    padding: 6px 12px; /* 内边距 */
+    font-size: 18px; /* 字体大小 */
+    cursor: pointer; /* 鼠标指针样式 */
+    border-radius: 10px; /* 圆角 */
+    position: relative; /* 相对定位 */
+    overflow: hidden; /* 溢出隐藏 */
+    transition: all 0.5s ease; /* 所有属性过渡效果 */
+}
+
+.button-stars::before {
+    content: '★'; /* 星星 */
+    position: absolute; /* 绝对定位 */
+    top: -20px;
+    left: 10%;
+    font-size: 24px;
+    color: rgba(255, 255, 255, 0.5);
+    animation: star 2s infinite linear; /* 星星动画 */
+}
+
+.button-stars::after {
+    content: '★'; /* 星星 */
+    position: absolute; /* 绝对定位 */
+    top: -20px;
+    left: 80%;
+    font-size: 24px;
+    color: rgba(255, 255, 255, 0.5);
+    animation: star 1s infinite linear; /* 星星动画 */
+}
+
+@keyframes star {
+    0% {
+        transform: translateY(0) rotate(0); /* 初始位置 */
+    }
+    100% {
+        transform: translateY(200px) rotate(360deg); /* 星星下落 */
+    }
+}
+
+.button-stars:hover {
+    transform: scale(1.1); /* 鼠标悬停时的缩放效果 */
+    box-shadow: 0 0 20px rgba(0, 255, 204, 0.8); /* 光晕效果 */
+}
+
+

@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=0">
+    <meta name="renderer" content="webkit"/>
+    <meta name="force-rendering" content="webkit"/>
+    <title>购物车演示 - Store模板升级版</title>
+    <link rel="stylesheet" type="text/css" href="../../assets/css/layui-2.5.7.css"/>
+    <link type="text/css" rel="stylesheet" href="../../assets/store/css/cart.css"/>
+    <style>
+        /* 现代化样式升级 */
+        body {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 80%, rgba(120, 119, 198, 0.3) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(255, 119, 198, 0.3) 0%, transparent 50%),
+                radial-gradient(circle at 40% 40%, rgba(120, 219, 255, 0.2) 0%, transparent 50%);
+            z-index: -1;
+        }
+        
+        /* 头部增强 */
+        .headerbox {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+        }
+        
+        .headerbox .header .headerC p {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+        
+        /* 返回按钮增强 */
+        .goback {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            padding: 8px;
+            border-radius: 12px;
+            background: rgba(255, 255, 255, 0.8);
+        }
+        
+        .goback:hover {
+            transform: scale(1.1);
+            background: rgba(255, 255, 255, 1);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        /* 主容器升级 */
+        .gwcbox {
+            background: transparent;
+            padding: 0 10px;
+        }
+        
+        /* 购物车项目卡片化 */
+        .gwcbox_1 {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-radius: 20px;
+            margin: 15px 0;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            overflow: hidden;
+            animation: slideInUp 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        /* 商品项目增强 */
+        .gwcone {
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            padding: 15px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .gwcone::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+            transition: left 0.5s;
+        }
+        
+        .gwcone:hover::before {
+            left: 100%;
+        }
+        
+        .gwcone:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            background: rgba(255, 255, 255, 0.5);
+        }
+        
+        /* 商品图片增强 */
+        .go2 img {
+            border-radius: 12px;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .go2 img:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+        }
+        
+        /* 数量控制按钮升级 */
+        .num1, .num3 {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            border-radius: 50%;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            border: none;
+            font-weight: 600;
+        }
+        
+        .num1:hover, .num3:hover {
+            transform: scale(1.15);
+            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+        }
+        
+        .num1:active, .num3:active {
+            transform: scale(0.95);
+        }
+        
+        .num2 {
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 8px;
+            font-weight: 600;
+            color: #333;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        /* 删除按钮增强 */
+        .del {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            padding: 8px;
+            border-radius: 50%;
+            background: rgba(255, 107, 107, 0.1);
+        }
+        
+        .del:hover {
+            transform: scale(1.2) rotate(15deg);
+            background: rgba(255, 107, 107, 0.2);
+        }
+        
+        /* 底部结算栏升级 */
+        .hejiBox .heji {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-radius: 20px 20px 0 0;
+            box-shadow: 0 -8px 32px rgba(0, 0, 0, 0.1);
+            border-top: 1px solid rgba(255, 255, 255, 0.3);
+            animation: slideInUp 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .heji_5 a {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            border-radius: 25px;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 4px 20px rgba(102, 126, 234, 0.3);
+            border: none;
+            font-weight: 600;
+        }
+        
+        .heji_5 a:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(102, 126, 234, 0.4);
+        }
+        
+        .heji_5 a:active {
+            transform: translateY(0);
+        }
+        
+        /* 全选按钮增强 */
+        .gwccheck {
+            position: relative;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .gwccheck.on {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+        }
+        
+        .gwccheck.on::after {
+            content: '✓';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: white;
+            font-weight: bold;
+            font-size: 12px;
+        }
+        
+        /* 猜你喜欢区域增强 */
+        .likebox {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-radius: 20px;
+            margin: 15px 10px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            animation: slideInUp 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .likeTit {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-weight: 600;
+        }
+        
+        .likebox ul li {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .likebox ul li::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            transition: left 0.5s;
+        }
+        
+        .likebox ul li:hover::before {
+            left: 100%;
+        }
+        
+        .likebox ul li:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+        }
+        
+        .likebox ul li img.proimg {
+            border-radius: 12px;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .likebox ul li:hover img.proimg {
+            transform: scale(1.05);
+        }
+        
+        /* 动画定义 */
+        @keyframes slideInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes fadeInScale {
+            from {
+                opacity: 0;
+                transform: scale(0.9);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+        
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+        
+        /* 演示用的商品样式 */
+        .demo-notice {
+            background: rgba(255, 193, 7, 0.9);
+            color: #333;
+            padding: 10px 15px;
+            border-radius: 10px;
+            margin: 10px;
+            text-align: center;
+            font-weight: 600;
+            animation: slideInUp 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+    </style>
+</head>
+
+<body>
+<div class="demo-notice">
+    🎉 Store模板购物车页面升级版演示 - 已添加现代化动画效果和交互体验
+</div>
+
+<div class="headerbox">
+    <div class="header">
+        <div class="headerC">
+            <div class="headerL">
+                <a onclick="javascript:history.back(-1)" class="goback"><img src="../../assets/store/images/goback.png"></a>
+            </div>
+            <p>购物车<span class="CartCount">(2)</span></p>
+        </div>
+        <div class="headerR"></div>
+    </div>
+</div>
+
+<div class="clear"></div>
+<div class="hbox"></div>
+<div class="kbox"></div>
+<div class="gwcbox">
+    <div class="gwcbox_1">
+        <div class="gwc1_1">
+            <div class="g1 Goodsd_1">
+                <div class="gwccheck on"></div>
+            </div>
+            <div class="g2">
+                <a href="#">
+                    <span>示例商店</span>
+                    <img src="../../assets/store/images/mre1.png"/>
+                </a>
+            </div>
+        </div>
+        <div class="clear"></div>
+        <div class="gwc1_2">
+            <div class="gwcone">
+                <div class="go1 CartSelect_1">
+                    <div class="gwccheck on"></div>
+                </div>
+                <div class="go2">
+                    <a href="#"><img src="../../assets/store/picture/error_img.png" style="width: 80px; height: 80px;"/></a>
+                </div>
+                <div class="go3">
+                    <div class="go3_1">
+                        <a href="#"><p class="p1">示例商品 - iPhone 15 Pro Max</p></a>
+                        <p class="p2">商品售价</p>
+                    </div>
+                    <div class="go3_2">
+                        <p class="p3">存储容量: 256GB | 颜色: 深空黑</p>
+                        <p class="p4">￥8999</p>
+                    </div>
+                    <div class="go3_3">
+                        <div class="num1">-</div>
+                        <div class="num2">1</div>
+                        <div class="num3">+</div>
+                        <div class="del"><img src="../../assets/store/images/del.png"/></div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="gwcone">
+                <div class="go1 CartSelect_1">
+                    <div class="gwccheck on"></div>
+                </div>
+                <div class="go2">
+                    <a href="#"><img src="../../assets/store/picture/error_img.png" style="width: 80px; height: 80px;"/></a>
+                </div>
+                <div class="go3">
+                    <div class="go3_1">
+                        <a href="#"><p class="p1">示例商品 - MacBook Pro 14</p></a>
+                        <p class="p2">商品售价</p>
+                    </div>
+                    <div class="go3_2">
+                        <p class="p3">配置: M3 Pro芯片 | 内存: 18GB</p>
+                        <p class="p4">￥15999</p>
+                    </div>
+                    <div class="go3_3">
+                        <div class="num1">-</div>
+                        <div class="num2">1</div>
+                        <div class="num3">+</div>
+                        <div class="del"><img src="../../assets/store/images/del.png"/></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="kbox"></div>
+
+    <div class="hejiBox">
+        <div class="heji" style="bottom: 0">
+            <div class="heji_1">
+                <div class="gwccheck on"></div>
+            </div>
+            <div class="heji_2">全选</div>
+            <div class="heji_3"><p>合计：<span id="price_all">￥24998</span></p></div>
+            <div class="heji_5">
+                <a href="#">去结算<span class="CartCount">(2)</span></a>
+            </div>
+        </div>
+    </div>
+
+    <div class="likebox" style="padding-bottom: 8em;">
+        <div class="likeTit">
+            <img src="../../assets/store/images/heart.png"><span>猜你喜欢</span>
+        </div>
+        <ul>
+            <li>
+                <a href="#">
+                    <img src="../../assets/store/picture/error_img.png" style="height: 26vh" class="proimg"/>
+                    <p class="tit">AirPods Pro 2代</p>
+                    <p class="price">￥1899<img src="../../assets/store/images/f3.png"/></p>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <img src="../../assets/store/picture/error_img.png" style="height: 26vh" class="proimg"/>
+                    <p class="tit">iPad Air 11英寸</p>
+                    <p class="price">￥4999<img src="../../assets/store/images/f3.png"/></p>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <img src="../../assets/store/picture/error_img.png" style="height: 26vh" class="proimg"/>
+                    <p class="tit">Apple Watch Series 9</p>
+                    <p class="price">￥2999<img src="../../assets/store/images/f3.png"/></p>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <img src="../../assets/store/picture/error_img.png" style="height: 26vh" class="proimg"/>
+                    <p class="tit">Magic Keyboard</p>
+                    <p class="price">￥1199<img src="../../assets/store/images/f3.png"/></p>
+                </a>
+            </li>
+        </ul>
+        <div style="text-align: center;margin-top: 1em" class="layui-text">
+            <div>已经到底了</div>
+        </div>
+    </div>
+</div>
+
+<script src="../../assets/js/jquery-3.4.1.min.js"></script>
+<script src="../../assets/js/layui.all.js"></script>
+<script>
+// 演示版简化的动画功能
+$(document).ready(function() {
+    // 模拟按钮点击效果
+    $('.num1, .num3, .del').click(function(e) {
+        e.preventDefault();
+        $(this).css('transform', 'scale(0.9)');
+        setTimeout(() => {
+            $(this).css('transform', '');
+        }, 150);
+        
+        // 模拟价格变化动画
+        if ($(this).hasClass('num1') || $(this).hasClass('num3')) {
+            $('#price_all').css('transform', 'scale(1.1)');
+            setTimeout(() => {
+                $('#price_all').css('transform', 'scale(1)');
+            }, 300);
+        }
+    });
+    
+    // 模拟结算按钮点击
+    $('.heji_5 a').click(function(e) {
+        e.preventDefault();
+        $(this).css('transform', 'translateY(-2px)');
+        setTimeout(() => {
+            $(this).css('transform', '');
+        }, 200);
+        
+        // 显示成功提示
+        var successHtml = '<div style="position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 9999; background: linear-gradient(45deg, #4CAF50, #45a049); color: white; padding: 20px 40px; border-radius: 25px; box-shadow: 0 8px 32px rgba(76, 175, 80, 0.3); animation: successPop 0.6s cubic-bezier(0.4, 0, 0.2, 1);">订单提交成功！</div>';
+        $('body').append(successHtml);
+        setTimeout(() => {
+            $('[style*="订单提交成功"]').parent().remove();
+        }, 2000);
+    });
+    
+    // 添加成功动画样式
+    $('<style>@keyframes successPop { 0% { opacity: 0; transform: translate(-50%, -50%) scale(0.5); } 100% { opacity: 1; transform: translate(-50%, -50%) scale(1); } }</style>').appendTo('head');
+});
+</script>
+</body>
+</html> 

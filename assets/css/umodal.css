@@ -1,0 +1,20 @@
+.umodal-overlay{position:fixed;inset:0;background:rgba(15,18,35,.38);-webkit-backdrop-filter:saturate(140%) blur(6px);backdrop-filter:saturate(140%) blur(6px);z-index:9990;opacity:0;transition:opacity .18s ease}
+.umodal-overlay.show{opacity:1}
+.umodal{position:fixed;left:50%;top:50%;transform:translate(-50%,-48%);min-width:320px;max-width:90vw;max-height:86vh;background:rgba(255,255,255,.98);border:1px solid rgba(15,18,35,.08);border-radius:14px;box-shadow:0 20px 60px rgba(15,18,35,.18);z-index:9991;display:flex;flex-direction:column;opacity:0;translate:0 -6px;transition:opacity .18s ease, translate .18s ease}
+.umodal.show{opacity:1;translate:0 0}
+.umodal-header{display:flex;align-items:center;justify-content:space-between;padding:12px 16px;border-bottom:1px solid rgba(15,18,35,.08)}
+.umodal-title{font-size:16px;font-weight:600;color:#2d3748}
+.umodal-close{position:relative;width:28px;height:28px;border-radius:8px;border:none;background:transparent;color:#64748b;font-size:20px;line-height:28px;cursor:pointer}
+.umodal-close:hover{background:rgba(15,18,35,.06);color:#1f2937}
+.umodal-body{padding:16px;overflow:auto}
+.umodal-footer{display:flex;justify-content:flex-end;gap:10px;padding:12px 16px;border-top:1px solid rgba(15,18,35,.08)}
+.umodal-btn{appearance:none;border:none;border-radius:10px;padding:10px 16px;font-weight:600;cursor:pointer;transition:transform .12s ease, box-shadow .12s ease}
+.umodal-btn:active{transform:translateY(0)}
+.umodal-btn.primary{background:linear-gradient(135deg,#667eea,#5a67d8);color:#fff;box-shadow:0 8px 20px rgba(102,126,234,.35)}
+.umodal-btn.secondary{background:linear-gradient(135deg,#a0aec0,#718096);color:#fff}
+.umodal-btn.danger{background:linear-gradient(135deg,#f56565,#e53e3e);color:#fff}
+.umodal-btn:hover{filter:brightness(1.05)}
+.umodal-loading{display:flex;align-items:center;justify-content:center;padding:28px}
+.umodal-spinner{width:36px;height:36px;border-radius:50%;border:3px solid rgba(102,126,234,.25);border-top-color:#667eea;animation:umodal-spin .8s linear infinite}
+@keyframes umodal-spin{to{transform:rotate(360deg)}}
+

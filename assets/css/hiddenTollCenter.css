@@ -1,0 +1,26 @@
+/* 隐藏复选框 */
+input[type="checkbox"] {
+  display: none;
+}
+/* 默认隐藏内容：设置初始最大高度和透明度 */
+.toggle-content {
+  max-height: 0;
+  opacity: 0;
+  overflow: hidden;
+  transition: max-height 0.5s ease, opacity 0.5s ease, padding 0.5s ease;
+  /* 为了动画效果，隐藏时去除内边距 */
+  padding: 0 10px;
+  border: 1px solid #ccc;
+  margin-top: 10px;
+}
+/* 当复选框选中时显示内容，给出足够的 max-height */
+input[type="checkbox"]:checked + label + .toggle-content {
+  max-height: 500px;  /* 设置一个比内容高度略大的数值 */
+  opacity: 1;
+  padding: 10px;
+}
+/* label 样式 */
+label {
+  cursor: pointer;
+  color: blue;
+}
