@@ -126,10 +126,10 @@ else if($tid==代刷网商品tid){
 } 
 ****/
 
-$apiurl = 'http://skyriver.icu/api.php?act=get';//域名若对接站点更换记得更换相应接口
+$apiurl = '';//域名若对接站点更换记得更换相应接口
 $data=array(
-    'uid'=>"2415",//平台uid
-    'key'=>"Z1pp1NRNP1zm1OoO",//平台的key
+    'uid'=>"",//平台uid
+    'key'=>"",//平台的key
     'school'=>$school,
     'platform'=>$id,
     'user'=>$user,
